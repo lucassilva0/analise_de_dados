@@ -8,7 +8,7 @@ dados = yf.download("JNJ", start="2021-01-01",
                     end="2025-12-31", progress=False)
 
 dados = dados.reset_index()
-# Vamos dividir os dados em treino (até o final do primeiro semestre de 2023) e teste (segundo semestre de 2023)
+# Vamos dividir os dados em treino (até o final do primeiro semestre de 2025) e teste (segundo semestre de 2025)
 dados_treino = dados[dados['Date'] < '2025-07-31']
 dados_teste = dados[dados['Date'] >= '2025-07-31']
 
@@ -25,7 +25,7 @@ modelo.add_country_holidays(country_name='US')
 
 modelo.fit(dados_prophet_treino)
 
-# Criar datas futuras para previsão até o final de 2023
+# Criar datas futuras para previsão até o final de 2025
 futuro = modelo.make_future_dataframe(periods=150)
 previsao = modelo.predict(futuro)
 
