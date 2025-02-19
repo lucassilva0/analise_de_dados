@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 from prophet import Prophet
 
 # Baixar dados dos último quatro ano para uma ação específica
-dados = yf.download("JNJ", start="2021-01-01",
-                    end="2025-12-31", progress=False)
+dados = yf.download("JNJ", start="2020-01-01",
+                    end="2023-12-31", progress=False)
 
 dados = dados.reset_index()
 # Vamos dividir os dados em treino (até o final do primeiro semestre de 2025) e teste (segundo semestre de 2025)
-dados_treino = dados[dados['Date'] < '2025-07-31']
-dados_teste = dados[dados['Date'] >= '2025-07-31']
+dados_treino = dados[dados['Date'] < '2023-07-31']
+dados_teste = dados[dados['Date'] >= '2023-07-31']
 
 # Preparando os dados para o FBProphet
 dados_prophet_treino = dados_treino[['Date', 'Close']].rename(
